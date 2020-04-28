@@ -1,0 +1,65 @@
+<div class="jumbotron">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 offset-sm-3">
+                <h2>Registro</h2>
+                <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="Nombre">Nombre</label>
+                        <input type="text" formControlName="Nombre" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Nombre.errors }" />
+                        <div *ngIf="submitted && f.Nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.Nombre.errors.required">El nombre es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Apellido">Apellido</label>
+                        <input type="text" formControlName="Apellido" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Apellido.errors }" />
+                        <div *ngIf="submitted && f.Apellido.errors" class="invalid-feedback">
+                            <div *ngIf="f.Apellido.errors.required">El apellido es obligatorio</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="TipoIdentificacion">Tipo de identificación</label>
+                        <select class="form-control" id="exampleFormControlSelect2" formControlName="TipoIdentificacion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.TipoIdentificacion.errors }">
+                            <option *ngFor="let item of objTipoIdentificacion" value="{{item.tipo}}">{{item.tipo}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.TipoIdentificacion.errors" class="invalid-feedback">
+                            <div *ngIf="f.TipoIdentificacion.errors.required">El tipo de identificación es requerido
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Identificacion">Número de identificación</label>
+                        <input type="text" formControlName="Identificacion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Identificacion.errors }" />
+                        <div *ngIf="submitted && f.Identificacion.errors" class="invalid-feedback">
+                            <div *ngIf="f.Identificacion.errors.required">El número de identificación es requerido</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="text" formControlName="Email" class="form-control" placeholder="example@correo.com" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" />
+                        <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                            <div *ngIf="f.Email.errors.required">El email es requerido</div>
+                            <div *ngIf="f.Email.errors.email">El formato email no es valido</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
+                            <div *ngIf="f.password.errors.minlength">La contraseña tiene que ser mayor de 4 caracteres
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button [disabled]="loading" class="btn btn-primary">Registrarme</button>
+                        <a [routerLink]="['/Login']" class="btn btn-link">Cancelar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner></ngx-spinner>
